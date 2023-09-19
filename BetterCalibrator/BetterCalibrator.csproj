@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="OpenTabletDriver" Version="0.6.3" />
+    <PackageReference Include="OpenTabletDriver.Native" Version="0.6.3" />
+    <PackageReference Include="OpenTabletDriver.Plugin" Version="0.6.3" />
+  </ItemGroup>
+
+</Project>

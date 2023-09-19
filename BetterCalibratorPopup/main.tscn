@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://fa3lmcwf5tab"]
+
+[ext_resource type="Script" path="res://TargetManager.gd" id="1_yoc3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib13i"]
+bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+
+[node name="Main" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ib13i")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
+script = ExtResource("1_yoc3i")
+
+[connection signal="gui_input" from="GridContainer" to="GridContainer" method="_on_gui_input"]
