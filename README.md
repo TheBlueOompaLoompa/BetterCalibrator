@@ -9,3 +9,5 @@ This is mean to make calibration easier. I had enough time on my hands to make t
 - [ ] MacOS
 
 I don't have a Mac or Windows device to test this on, so I wont be trying too hard to add support for it. I can't even compile for Mac as I don't own any apple computers.
+
+I am open to pull requests if you want to add support for your platform.
