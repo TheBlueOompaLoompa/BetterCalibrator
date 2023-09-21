@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://fa3lmcwf5tab"]
+[gd_scene load_steps=4 format=3 uid="uid://fa3lmcwf5tab"]
 
 [ext_resource type="Script" path="res://TargetManager.gd" id="1_yoc3i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib13i"]
 bg_color = Color(0.498039, 0.498039, 0.498039, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ii6d"]
+font_size = 24
+font_color = Color(0, 1, 0, 1)
 
 [node name="Main" type="PanelContainer"]
 anchors_preset = 15
@@ -17,5 +21,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ib13i")
 layout_mode = 2
 columns = 3
 script = ExtResource("1_yoc3i")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Middle Click to Switch Monitors"
+label_settings = SubResource("LabelSettings_2ii6d")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="GridContainer" to="GridContainer" method="_on_gui_input"]

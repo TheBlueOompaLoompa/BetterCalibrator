@@ -13,8 +13,19 @@ var data = {
 	offsets = []
 }
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func reset():
+	data = {
+		cols = 0,
+		rows = 0,
+		offsets = []
+	}
+	
+	current_target = 0
+	targets = []
+	
+	for child in get_children():
+		remove_child(child)
+	
 	var col_count = ceili(get_viewport_rect().size.x / density)
 	var row_count = ceili(get_viewport_rect().size.y / density)
 	
@@ -26,6 +37,14 @@ func _ready():
 		var t = target.instantiate()
 		targets.push_back(t)
 		add_child(t)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	reset()
+	
+	get_viewport().connect("size_changed", func():
+		reset()
+	)
 
 func _process(_delta):
 	for i in len(targets):
