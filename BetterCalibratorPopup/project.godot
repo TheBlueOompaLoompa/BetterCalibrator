@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/mode=4
 window/size/initial_position_type=3
 
+[dotnet]
+
+project/assembly_name="BetterCalibratorPopup"
+
 [editor_plugins]
 
 enabled=PackedStringArray()
