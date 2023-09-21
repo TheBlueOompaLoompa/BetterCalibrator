@@ -11,7 +11,7 @@ godot --headless --path ../BetterCalibratorPopup --export-release "Linux/X11" ..
 
 cp ../BetterCalibrator/bin/Release/net6.0/BetterCalibrator.dll .
 
-zip BetterCalibrator.zip BetterCalibrator.dll calibrator.x86_64 calibrator.x86_64.exe
+zip BetterCalibrator.zip BetterCalibrator.dll calibrator.x86_64 calibrator.exe
 
 mv BetterCalibrator.zip ../
 
