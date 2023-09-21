@@ -22,7 +22,7 @@ window/size/initial_position_type=3
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/aseprite_importer/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 
