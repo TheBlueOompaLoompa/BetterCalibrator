@@ -37,7 +37,12 @@ func _process(_delta):
 var just_pressed = false
 
 func _on_gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && event.is_pressed() && event.get_button_index() == MOUSE_BUTTON_MIDDLE:
+		if DisplayServer.window_get_current_screen() == DisplayServer.get_screen_count() - 1:
+			DisplayServer.window_set_current_screen(0)
+		else:
+			DisplayServer.window_set_current_screen(DisplayServer.window_get_current_screen() + 1)
+	if event is InputEventMouseButton && event.get_button_index() != MOUSE_BUTTON_MIDDLE:
 		if not(just_pressed):
 			just_pressed = true
 			save_offset(targets[current_target], event.position)
