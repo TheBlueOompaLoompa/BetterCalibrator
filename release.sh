@@ -6,9 +6,10 @@ rm BetterCalibrator.zip
 mkdir tmp
 cd tmp
 
+godot --headless --path ../BetterCalibratorPopup --export-release "Windows Desktop" ../tmp/calibrator.exe
+godot --headless --path ../BetterCalibratorPopup --export-release "Linux/X11" ../tmp/calibrator.x86_64
+
 cp ../BetterCalibrator/bin/Release/net6.0/BetterCalibrator.dll .
-cp ../BetterCalibratorPopup/calibrator.x86_64 .
-cp ../BetterCalibratorPopup/calibrator.x86_64.exe .
 
 zip BetterCalibrator.zip BetterCalibrator.dll calibrator.x86_64 calibrator.x86_64.exe
 
