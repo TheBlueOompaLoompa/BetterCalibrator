@@ -13,8 +13,19 @@ var data = {
 	offsets = []
 }
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func reset():
+	data = {
+		cols = 0,
+		rows = 0,
+		offsets = []
+	}
+	
+	current_target = 0
+	targets = []
+	
+	for child in get_children():
+		remove_child(child)
+	
 	var col_count = ceili(get_viewport_rect().size.x / density)
 	var row_count = ceili(get_viewport_rect().size.y / density)
 	
@@ -27,6 +38,14 @@ func _ready():
 		targets.push_back(t)
 		add_child(t)
 
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	reset()
+	
+	get_viewport().connect("size_changed", func():
+		reset()
+	)
+
 func _process(_delta):
 	for i in len(targets):
 		if i == current_target:
@@ -37,7 +56,12 @@ func _process(_delta):
 var just_pressed = false
 
 func _on_gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && event.is_pressed() && event.get_button_index() == MOUSE_BUTTON_MIDDLE:
+		if DisplayServer.window_get_current_screen() == DisplayServer.get_screen_count() - 1:
+			DisplayServer.window_set_current_screen(0)
+		else:
+			DisplayServer.window_set_current_screen(DisplayServer.window_get_current_screen() + 1)
+	if event is InputEventMouseButton && event.get_button_index() != MOUSE_BUTTON_MIDDLE:
 		if not(just_pressed):
 			just_pressed = true
 			save_offset(targets[current_target], event.position)
