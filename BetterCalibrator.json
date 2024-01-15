@@ -5,9 +5,9 @@
   "PluginVersion": "0.1.2",
   "SupportedDriverVersion": "0.6.3.0",
   "RepositoryUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator",
-  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download/0.1.1/BetterCalibrator.zip",
+  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download/0.1.2/BetterCalibrator.zip",
   "CompressionFormat": "zip",
-  "SHA256": "a27bafdcc449503a8d3cc3c0d72f71f2b67c63ed78d619e7f8f54a310d303354",
+  "SHA256": "76f538cc197a1fef26e065991669c63017c51dc467a0124def7923463937cedb",
   "WikiUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/blob/master/README.md",
   "LicenseIdentifier": "GPL-3.0-only"
 }
