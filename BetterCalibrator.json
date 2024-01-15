@@ -2,7 +2,7 @@
   "Name": "BetterCalibrator",
   "Owner": "TheBlueOompaLoompa",
   "Description": "Calibrate your tablet faster and easier",
-  "PluginVersion": "0.1.1",
+  "PluginVersion": "0.1.2",
   "SupportedDriverVersion": "0.6.3.0",
   "RepositoryUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator",
   "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download/0.1.1/BetterCalibrator.zip",

@@ -163,7 +163,8 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
     public Vector2 filter(Vector2 input) {
         if(info != null) {
             Vector2 pos = to_pixel(input);
-            Vector2 cellSize = new Vector2(pos.X/info.cols, pos.Y/info.rows);
+            var display = absolute_output_mode.Output;
+            Vector2 cellSize = new Vector2(display.Width/info.cols, display.Height/info.rows);
             Vector2 cellCenter = cellSize / 2f;
 
             Vector2 mov = Vector2.Zero;
@@ -177,14 +178,15 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
                     mov.Y = row * cellSize.Y;
                     center = cellCenter + mov;
 
-                    //Console.WriteLine(distance(center.X, pos.X));
-                    if(distance(center.X, pos.X) <= cellSize.X && distance(center.Y, pos.Y) <= cellSize.Y) {
-                        final.X += info.offsets[col + (row * info.cols)][0];
-                        final.Y += info.offsets[col + (row * info.cols)][1];
+                    
+                    if(distance(center.X, pos.X) * 2f <= cellSize.X && distance(center.Y, pos.Y) * 2f <= cellSize.Y) {
+                        final.X -= info.offsets[col + (row * info.cols)][0];
+                        final.Y -= info.offsets[col + (row * info.cols)][1];
                     }
                 }
             }
 
+            final -= absolute_output_mode.Output.Position - (new Vector2(absolute_output_mode.Output.Width, absolute_output_mode.Output.Height) / 2f);
             input -= from_pixel(final);
         }
         return input;
