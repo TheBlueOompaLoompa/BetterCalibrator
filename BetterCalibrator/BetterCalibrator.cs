@@ -97,7 +97,6 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
                 }
             } catch (Exception exception) {
                 Log.Exception(exception);
-                info = new OffsetInfo();
             }
             
         }
