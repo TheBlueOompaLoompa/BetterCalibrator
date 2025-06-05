@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://w8f823p6hs8d"]
 
-[ext_resource type="Script" path="res://target.gd" id="1_2nhqo"]
+[ext_resource type="Script" uid="uid://63ueo8o083l6" path="res://target.gd" id="1_2nhqo"]
 [ext_resource type="Texture2D" uid="uid://c0at1wr8ilawa" path="res://Target.png" id="1_yo1va"]
 
 [node name="Target" type="CenterContainer"]

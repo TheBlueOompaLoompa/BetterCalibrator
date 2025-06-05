@@ -175,6 +175,8 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
             Vector2 center = Vector2.Zero;
 
             var final = Vector2.Zero;
+            float factorSumX = 0f;
+            float factorSumY = 0f;
 
             for(var row = 0; row < info.rows; row++) {
                 for(var col = 0; col < info.cols; col++) {
@@ -182,13 +184,21 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
                     mov.Y = row * cellSize.Y;
                     center = cellCenter + mov;
 
+                    float dist = Vector2.Distance(center, pos);
+                    float xFactor = Math.Max(Math.Min((cellSize.X - dist)/cellSize.X, 1f), 0f);
+                    float yFactor = Math.Max(Math.Min((cellSize.Y - dist)/cellSize.Y, 1f), 0f);
+
+                    factorSumX += xFactor;
+                    factorSumY += yFactor;
                     
-                    if(distance(center.X, pos.X) * 2f <= cellSize.X && distance(center.Y, pos.Y) * 2f <= cellSize.Y) {
-                        final.X -= info.offsets[col + (row * info.cols)][0];
-                        final.Y -= info.offsets[col + (row * info.cols)][1];
-                    }
+                    final.X -= info.offsets[col + (row * info.cols)][0] * xFactor;
+                    final.Y -= info.offsets[col + (row * info.cols)][1] * yFactor;
                 }
             }
+
+            // Normalize
+            final.X /= factorSumX;
+            final.Y /= factorSumY;
 
             final -= absolute_output_mode.Output.Position - (new Vector2(absolute_output_mode.Output.Width, absolute_output_mode.Output.Height) / 2f);
             input -= from_pixel(final);
@@ -210,3 +220,4 @@ enum OutputModeType {
     relative,
     unknown
 }
+
