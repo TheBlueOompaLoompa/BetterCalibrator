@@ -1,4 +1,9 @@
 #!/usr/bin/env /bin/bash
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied, need version"
+fi
+
 echo Bulding BetterCalibrator Release
 dotnet build --configuration Release
 
