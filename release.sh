@@ -2,6 +2,7 @@
 if [ $# -eq 0 ]
   then
     echo "No arguments supplied, need version"
+    exit 1
 fi
 
 echo Bulding BetterCalibrator Release
