@@ -15,17 +15,25 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
     [Resolved]
     public IDriver driver;
 
+    [Property("Calibration Data"), ToolTip("This should be set to the output from the calibration program."), DefaultPropertyValue("")]
+    public String ConfigString {
+        get => configString;
+        set {
+            configString = value;
+
+            try {
+                info = JsonSerializer.Deserialize<OffsetInfo>(configString);
+            } catch (Exception exception) {
+                Log.Exception(exception);
+            }
+        }
+    }
+    private String configString;
+
     OffsetInfo info = new OffsetInfo();
 
-    /*[Property("Calibration Data"), DefaultPropertyValue("{\"cols\":5,\"offsets\":[[3.5,-26],[5.5,-26],[5.5,-27],[5.5,-25],[8,-27],[4.5,-26.5],[4.5,-29.5],[5.5,-25.5],[3.5,-26.5],[388,-25.5],[5.5,-26.5],[5.5,-25.5],[5.5,-23.5],[2.5,-21.5],[0,-25.5]],\"rows\":3}")]
-    public string Data {
-        get; set;
-    }*/
-
-    public Vector2 to_unit_screen(Vector2 input)
-    {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null)
-        {
+    public Vector2 to_unit_screen(Vector2 input) {
+        if(output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
             var display = absolute_output_mode.Output;
             var offset = absolute_output_mode.Output.Position;
             var shiftoffX = offset.X - (display.Width / 2);
@@ -37,10 +45,8 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
         return default;
     }
 
-    public Vector2 from_unit_screen(Vector2 input)
-    {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null)
-        {
+    public Vector2 from_unit_screen(Vector2 input) {
+        if(output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
             var display = absolute_output_mode.Output;
             var offset = absolute_output_mode.Output.Position;
             var shiftoffX = offset.X - (display.Width / 2);
@@ -52,10 +58,8 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
         return default;
     }
 
-    public Vector2 to_unit_tablet(Vector2 input)
-    {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null)
-        {
+    public Vector2 to_unit_tablet(Vector2 input) {
+        if(output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
             return new Vector2(input.X / absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX * 2 - 1, input.Y / absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY * 2 - 1);
         }
 
@@ -63,10 +67,8 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
         return default;
     }
 
-    public Vector2 from_unit_tablet(Vector2 input)
-    {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null)
-        {
+    public Vector2 from_unit_tablet(Vector2 input) {
+        if(output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
             return new Vector2((input.X + 1) / 2 * absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX, (input.Y + 1) / 2 * absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY);
         }
 
@@ -77,31 +79,16 @@ public class BetterCalibrator : IPositionedPipelineElement<IDeviceReport> {
     public Vector2 clamp(Vector2 input)
     {
         return new Vector2(
-        Math.Clamp(input.X, -1, 1),
-        Math.Clamp(input.Y, -1, 1)
+            Math.Clamp(input.X, -1, 1),
+            Math.Clamp(input.Y, -1, 1)
         );
     }
-
-    private bool parsed = false;
 
     private OutputModeType output_mode_type;
     private AbsoluteOutputMode absolute_output_mode;
     private RelativeOutputMode relative_output_mode;
     private void try_resolve_output_mode() {
-        if(!parsed) {
-            parsed = true;
-            try {
-                using(StreamReader reader = new StreamReader(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/offsets.json")) {
-                    string json = reader.ReadToEnd();
-                    info = JsonSerializer.Deserialize<OffsetInfo>(json);
-                }
-            } catch (Exception exception) {
-                Log.Exception(exception);
-            }
-            
-        }
-        if (driver is Driver drv)
-        {
+        if(driver is Driver drv) {
             IOutputMode output = drv.InputDevices
                 .Where(dev => dev?.OutputMode?.Elements?.Contains(this) ?? false)
                 .Select(dev => dev?.OutputMode).FirstOrDefault();
