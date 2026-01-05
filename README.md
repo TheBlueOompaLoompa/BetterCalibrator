@@ -5,14 +5,14 @@ This is meant to make calibration easier. I had enough time on my hands to make 
 Immediately after installing the plugin through OpenTabletDriver, click on the `Filters` tab and disable BetterCalibrator.
 Then, go to the directory where it's installed.
 ### Linux
-- Usually found in: `~/.config/OpenTabletDriver/Plugin/BetterCalibrator`
+- Usually found in: `~/.config/OpenTabletDriver/Plugins/BetterCalibrator`
 - Make calibrator.x86_64 an executable \(Through properties or chmod +x\)
 - Launch it and complete the calibration by tapping the center of each target with your pen.
 ### Windows
-- Press Win+R, the "run" window will come up, input the following directory: `%localappdata%\OpenTabletDriver\Plugin\BetterCalibrator` and press enter
+- Press Win+R, the "run" window will come up, input the following directory: `%localappdata%\OpenTabletDriver\Plugins\BetterCalibrator` and press enter
 - The plugin's directory will open up, simply run `calibrator.exe` and complete the calibration by tapping the center of each target with your pen.
 
-After you click the last target, the calibrator program will save the configuration. Now you can re-enable the filter. The configuration will automatically load and you will get calibrated output.
+After you click the last target, the calibrator program will prompt you to copy the calibration data from a text box. Paste this data into the filter Calibration Data property. You can now enable BetterCalibrator.
 
 
 ## Supported Platforms
