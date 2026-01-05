@@ -1,4 +1,4 @@
-extends CenterContainer
+class_name Target extends CenterContainer
 
 
 func hide_target():

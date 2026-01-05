@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://fa3lmcwf5tab"]
+[gd_scene load_steps=6 format=3 uid="uid://fa3lmcwf5tab"]
 
 [ext_resource type="Script" uid="uid://dns4w4uxp14fy" path="res://TargetManager.gd" id="1_yoc3i"]
 
@@ -9,6 +9,12 @@ bg_color = Color(0.498039, 0.498039, 0.498039, 1)
 font_size = 24
 font_color = Color(0, 1, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig7tw"]
+bg_color = Color(0.34320343, 0.34320346, 0.34320334, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ig7tw"]
+font_size = 24
+
 [node name="Main" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,17 +23,68 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ib13i")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="." node_paths=PackedStringArray("popup", "text_box")]
 layout_mode = 2
 columns = 3
 script = ExtResource("1_yoc3i")
+popup = NodePath("../CalibrationCompletePopup")
+text_box = NodePath("../CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer/LineEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 8
-text = "Middle Click to Switch Monitors"
+text = "Middle Click to Switch Monitors
+Press Escape to Quit"
 label_settings = SubResource("LabelSettings_2ii6d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CalibrationCompletePopup" type="Window" parent="."]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(400, 250)
+visible = false
+transient = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CalibrationCompletePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ig7tw")
+
+[node name="MarginContainer" type="MarginContainer" parent="CalibrationCompletePopup/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CalibrationCompletePopup/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Calibration Complete!"
+label_settings = SubResource("LabelSettings_ig7tw")
+
+[node name="Label2" type="Label" parent="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Please copy from this textbox, and paste into the Calibration Data field in Open Tablet Driver on the BetterCalibrator filter settings page."
+autowrap_mode = 3
+
+[node name="LineEdit" type="LineEdit" parent="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+select_all_on_focus = true
+
+[node name="CloseButton" type="Button" parent="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
 [connection signal="gui_input" from="GridContainer" to="GridContainer" method="_on_gui_input"]
+[connection signal="text_changed" from="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer/LineEdit" to="GridContainer" method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="CalibrationCompletePopup/PanelContainer/MarginContainer/VBoxContainer/CloseButton" to="GridContainer" method="_on_close_button_pressed"]
