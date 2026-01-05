@@ -99,6 +99,8 @@ func save_offset_file():
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 	text_content = JSON.stringify(data)
 	text_box.text = text_content
+	DisplayServer.clipboard_set(text_content)
+	DisplayServer.clipboard_set_primary(text_content)
 	popup.show()
 
 
