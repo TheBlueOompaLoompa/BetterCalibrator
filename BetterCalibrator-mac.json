@@ -2,12 +2,12 @@
   "Name": "BetterCalibrator-macOS",
   "Owner": "TheBlueOompaLoompa",
   "Description": "Calibrate your tablet faster and easier",
-  "PluginVersion": "",
+  "PluginVersion": "0.3.1",
   "SupportedDriverVersion": "0.6.6.0",
   "RepositoryUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator",
-  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download//BetterCalibrator/macOS.zip",
+  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download/0.3.1/BetterCalibrator/macOS.zip",
   "CompressionFormat": "zip",
-  "SHA256": "4f327c2d42766a3433b2259c8f2547853a30db052f9ee9a2dc56e117f8c7f41a",
+  "SHA256": "0958dd4d236257d3a2c327d0b6167be9ba7cf5df2f1506224e8184374935c391",
   "WikiUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/blob/master/README.md",
   "LicenseIdentifier": "GPL-3.0-only"
 }

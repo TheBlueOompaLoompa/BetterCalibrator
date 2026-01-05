@@ -2,12 +2,12 @@
   "Name": "BetterCalibrator-Linux",
   "Owner": "TheBlueOompaLoompa",
   "Description": "Calibrate your tablet faster and easier",
-  "PluginVersion": "",
+  "PluginVersion": "0.3.1",
   "SupportedDriverVersion": "0.6.6.0",
   "RepositoryUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator",
-  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download//BetterCalibrator/Linux.zip",
+  "DownloadUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/releases/download/0.3.1/BetterCalibrator/Linux.zip",
   "CompressionFormat": "zip",
-  "SHA256": "3e9dc49a894bdcfcc6df9f8dd71e6c08da9856bf1d680cbc9b76e270ef48a292",
+  "SHA256": "1c3ea2307b731802c0808bb11366e5a6b6172d9ad0c66f5f68ed34abf98144c4",
   "WikiUrl": "https://github.com/TheBlueOompaLoompa/BetterCalibrator/blob/master/README.md",
   "LicenseIdentifier": "GPL-3.0-only"
 }
